@@ -34,13 +34,18 @@ function setGameElements() {
      	break;
     	case 'ended':
         	newGameBtn.innerText = 'Play Again';
+            computerResultElem.innerHTML = "";
+            playerResultElem.innerHTML = "";
+            playerPickElem.innerHTML = "";
+            computerPickElem.innerHTML = "";
     	case 'notStarted':
     	default:
         	newGameElem.style.display = 'block';
         	pickElem.style.display = 'none';
-        	resultsElem.style.display = 'none';
+        	resultsElem.style.display = 'none';           
   }
 }
+setGameElements();
 //Game Start
 var playerPointsElem = document.getElementById('js-playerPoints'),
     playerNameElem = document.getElementById('js-playerName'),
@@ -58,28 +63,17 @@ function newGame() {
   		}
 
 }
-function playerPick(playerPick) {
-    console.log(playerPick);
-}
-var x = Math.random();
-Math.floor(Math.random()*3);
 
 function getComputerPick() {
     var possiblePicks = ['rock', 'paper', 'scissors'];
     return possiblePicks[Math.floor(Math.random()*3)];
 }
 
-var playerPickElem = document.getElementById('js-playerPick'),
+    var playerPickElem = document.getElementById('js-playerPick'),
     computerPickElem = document.getElementById('js-computerPick'),
     playerResultElem = document.getElementById('js-playerResult'),
     computerResultElem = document.getElementById('js-computerResult');
 
-function playerPick(playerPick) {
-    var computerPick = getComputerPick();
-
-    playerPickElem.innerHTML = playerPick;
-    computerPickElem.innerHTML = computerPick;
-}
 //Getting Points
 function checkRoundWinner(playerPick, computerPick) {
   	playerResultElem.innerHTML = computerResultElem.innerHTML = '';
