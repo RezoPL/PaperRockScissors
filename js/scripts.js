@@ -26,23 +26,23 @@ var newGameElem = document.getElementById('js-newGameElement'),
     resultsElem = document.getElementById('js-resultsTableElement');
 
 function setGameElements() {
-  	switch(gameState) {
-    	case 'started':
-        	newGameElem.style.display = 'none';
-        	pickElem.style.display = 'block';
-        	resultsElem.style.display = 'block';
-     	break;
-    	case 'ended':
-        	newGameBtn.innerText = 'Play Again';
+    switch(gameState) {
+      case 'started':
+          newGameElem.style.display = 'none';
+          pickElem.style.display = 'block';
+          resultsElem.style.display = 'block';
+      break;
+      case 'ended':
+          newGameBtn.innerText = 'Play Again';
             computerResultElem.innerHTML = "";
             playerResultElem.innerHTML = "";
             playerPickElem.innerHTML = "";
             computerPickElem.innerHTML = "";
-    	case 'notStarted':
-    	default:
-        	newGameElem.style.display = 'block';
-        	pickElem.style.display = 'none';
-        	resultsElem.style.display = 'none';           
+      case 'notStarted':
+      default:
+          newGameElem.style.display = 'block';
+          pickElem.style.display = 'none';
+          resultsElem.style.display = 'none';           
   }
 }
 setGameElements();
@@ -52,15 +52,15 @@ var playerPointsElem = document.getElementById('js-playerPoints'),
     computerPointsElem = document.getElementById('js-computerPoints');
 
 function newGame() {
-  	player.name = prompt('Please enter your name', 'imię gracza');
-  		if (player.name) {
-    		player.score = computer.score = 0;
-    		gameState = 'started';
-    		setGameElements();
+    player.name = prompt('Please enter your name', 'imię gracza');
+      if (player.name) {
+        player.score = computer.score = 0;
+        gameState = 'started';
+        setGameElements();
 
-    		playerNameElem.innerHTML = player.name;
-    		setGamePoints();
-  		}
+        playerNameElem.innerHTML = player.name;
+        setGamePoints();
+      }
 
 }
 
@@ -76,29 +76,29 @@ function getComputerPick() {
 
 //Getting Points
 function checkRoundWinner(playerPick, computerPick) {
-  	playerResultElem.innerHTML = computerResultElem.innerHTML = '';
+    playerResultElem.innerHTML = computerResultElem.innerHTML = '';
 
-  	var winnerIs = 'player';
+    var winnerIs = 'player';
 
-    	if (playerPick == computerPick) {
-        	winnerIs = 'noone'; // remis
-    	} else if (
-        	(computerPick == 'rock' &&  playerPick == 'scissors') ||
-        	(computerPick == 'scissors' &&  playerPick == 'paper') ||
-        	(computerPick == 'paper' &&  playerPick == 'rock')) {
+      if (playerPick == computerPick) {
+          winnerIs = 'noone'; // remis
+      } else if (
+          (computerPick == 'rock' &&  playerPick == 'scissors') ||
+          (computerPick == 'scissors' &&  playerPick == 'paper') ||
+          (computerPick == 'paper' &&  playerPick == 'rock')) {
 
-        	winnerIs = 'computer';
-    	}
+          winnerIs = 'computer';
+      }
 
-    	if (winnerIs == 'player') {
-        	playerResultElem.innerHTML = "Win!";
-        	player.score++;
-    	} else if (winnerIs == 'computer') {
-        	computerResultElem.innerHTML = "Win!";
-        	computer.score++;
-    	}
-    	setGamePoints();
-		checkPoints();
+      if (winnerIs == 'player') {
+          playerResultElem.innerHTML = "Win!";
+          player.score++;
+      } else if (winnerIs == 'computer') {
+          computerResultElem.innerHTML = "Win!";
+          computer.score++;
+      }
+      setGamePoints();
+    checkPoints();
 }
 function playerPick(playerPick) {
     var computerPick = getComputerPick();
@@ -113,15 +113,15 @@ function setGamePoints() {
     computerPointsElem.innerHTML = computer.score;
 }
 function checkPoints() {
-	if (player.score == 10) {
-		finishGame("You win!");
-	} else if (computer.score == 10) {
-		finishGame("Computer win!");
-	}
+  if (player.score == 10) {
+    finishGame("You win!");
+  } else if (computer.score == 10) {
+    finishGame("Computer win!");
+  }
 }
 
 function finishGame(message) {
-	alert(message);
-	gameState = 'ended';
-	setGameElements(); 
+  alert(message);
+  gameState = 'ended';
+  setGameElements(); 
 }
